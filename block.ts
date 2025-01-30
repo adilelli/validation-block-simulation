@@ -27,7 +27,7 @@ class Block {
   }
 }
 
-class Data{
+class Data {
   TERMS_CHANGEBLE: boolean;
   WILL_DATA_SEND_TO_3RD_PARTY: boolean;
   WILL_APP_TURN_INTO_SUBSCRIPTION: boolean;
@@ -42,7 +42,7 @@ class Data{
   }
 }
 
-class modifyData{
+class UpdateData {
   index: number;
   data: Data;
 
@@ -137,7 +137,7 @@ app.post("/addBlock", (data: Data, res: any) => {
   res.json({ message: "✅ Block added!", block: newBlock });
 });
 
-app.put("/updateBlock", (updateData: modifyData, res: any) => {
+app.put("/updateBlock", (updateData: UpdateData, res: any) => {
   const index = updateData.index
   const data = updateData.data as Data; // Type assertion for TypeScript
 
