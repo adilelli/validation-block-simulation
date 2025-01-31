@@ -28,17 +28,36 @@ class Block {
 }
 
 class Data {
-  TERMS_CHANGEBLE: boolean;
+  GLOBAL_TERMS_CHANGEBLE: boolean;
   WILL_DATA_SEND_TO_3RD_PARTY: boolean;
+  WILL_DATA_SEND_TO_3RD_PARTY_CHANGEBLE: boolean;
   WILL_APP_TURN_INTO_SUBSCRIPTION: boolean;
+  WILL_APP_TURN_INTO_SUBSCRIPTION_CHANGEBLE: boolean;
   WILL_USERS_OWN_THEIR_WORK: boolean;
+  WILL_USERS_OWN_THEIR_WORK_CHANGEBLE: boolean;
   WILL_USER_DATA_USED_FOR_AI_TRAINING: boolean;
-  constructor(TERMS_CHANGEBLE: boolean, WILL_DATA_SEND_TO_3RD_PARTY: boolean, WILL_APP_TURN_INTO_SUBSCRIPTION: boolean, WILL_USERS_OWN_THEIR_WORK: boolean, WILL_USER_DATA_USED_FOR_AI_TRAINING: boolean) {
-    this.TERMS_CHANGEBLE = TERMS_CHANGEBLE;
+  WILL_USER_DATA_USED_FOR_AI_TRAINING_CHANGEBLE: boolean;
+  constructor(
+    GLOBAL_TERMS_CHANGEBLE: boolean, 
+    WILL_DATA_SEND_TO_3RD_PARTY: boolean, 
+    WILL_DATA_SEND_TO_3RD_PARTY_CHANGEBLE: boolean,
+    WILL_APP_TURN_INTO_SUBSCRIPTION: boolean, 
+    WILL_APP_TURN_INTO_SUBSCRIPTION_CHANGEBLE: boolean,
+    WILL_USERS_OWN_THEIR_WORK: boolean, 
+    WILL_USERS_OWN_THEIR_WORK_CHANGEBLE: boolean,
+    WILL_USER_DATA_USED_FOR_AI_TRAINING: boolean,
+    WILL_USER_DATA_USED_FOR_AI_TRAINING_CHANGEBLE: boolean,
+  ) 
+  {
+    this.GLOBAL_TERMS_CHANGEBLE = GLOBAL_TERMS_CHANGEBLE;
     this.WILL_DATA_SEND_TO_3RD_PARTY = WILL_DATA_SEND_TO_3RD_PARTY;
+    this.WILL_DATA_SEND_TO_3RD_PARTY_CHANGEBLE = WILL_DATA_SEND_TO_3RD_PARTY_CHANGEBLE;
     this.WILL_APP_TURN_INTO_SUBSCRIPTION = WILL_APP_TURN_INTO_SUBSCRIPTION;
+    this.WILL_APP_TURN_INTO_SUBSCRIPTION_CHANGEBLE = WILL_APP_TURN_INTO_SUBSCRIPTION_CHANGEBLE;
     this.WILL_USERS_OWN_THEIR_WORK = WILL_USERS_OWN_THEIR_WORK;
+    this.WILL_USERS_OWN_THEIR_WORK_CHANGEBLE = WILL_USERS_OWN_THEIR_WORK_CHANGEBLE;
     this.WILL_USER_DATA_USED_FOR_AI_TRAINING = WILL_USER_DATA_USED_FOR_AI_TRAINING;
+    this.WILL_USER_DATA_USED_FOR_AI_TRAINING_CHANGEBLE = WILL_USER_DATA_USED_FOR_AI_TRAINING_CHANGEBLE;
   }
 }
 
@@ -61,7 +80,11 @@ class Blockchain {
       false,
       false,
       false,
-      false
+      false,
+      false,
+      false,
+      false,
+      false,
     );
     
     this.chain = [this.createGenesisBlock(data)];
@@ -148,9 +171,6 @@ app.put("/updateBlock", (updateData: UpdateData, res: any) => {
   const result = blockchain.updateBlock(index, data);
   return res.json({ message: result });
 });
-
-
-
 
 app.get("/validate", (req: Request, res: Response) => {
   const isValid = blockchain.validateChain();
